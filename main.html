@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨家东庄村 - 樱桃采摘与文旅展示</title>
+    <!-- 移除无法在国内稳定访问的 Google Fonts，改用跨平台系统默认中文字体栈 -->
+    
+    <style>
+        /* ==========================================================================
+           CSS 变量与全局设置 (CSS Variables & Global Styles)
+           ========================================================================== */
+        :root {
+            --color-primary: #1E3A2B;
+            --color-primary-light: #2A523D;
+            --color-primary-dark: #12241A;
+            --color-white: #FFFFFF;
+            --color-bg-light: #F8F9FA;
+            --color-text-main: #333333;
+            --color-text-muted: #888888;
+            --color-border: #E0E0E0;
+            
+            /* 使用国内跨平台兼容性最好的中文字体栈 */
+            --font-serif: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif SC', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text-main);
+            background-color: var(--color-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* 布局容器 */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header__title {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--color-text-main);
+            margin-bottom: 12px;
+        }
+
+        .section-header__subtitle {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            color: var(--color-text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .section-header--light .section-header__title,
+        .section-header--light .section-header__subtitle {
+            color: var(--color-white);
+        }
+
+        /* ==========================================================================
+           组件样式 (Component Styles)
+           ========================================================================== */
+
+        /* 1. 顶部导航栏 (Navbar) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(30, 58, 43, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--color-white);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .navbar__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar__logo {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .navbar__nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .navbar__link {
+            font-size: 15px;
+            position: relative;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .navbar__link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: var(--transition-smooth);
+            transform: translateX(-50%);
+        }
+
+        .navbar__link:hover {
+            opacity: 1;
+        }
+
+        .navbar__link:hover::after {
+            width: 100%;
+        }
+
+        /* 2. 首屏大图区 (Hero Section) */
+        .hero {
+            height: 100vh;
+            /* 替换为在线图片素材 */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(30, 58, 43, 0.6)), url('https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Cherry-Quality.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+            padding-top: 80px;
+        }
+
+        .hero__content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero__title {
+            font-family: var(--font-serif);
+            font-size: 72px;
+            font-weight: 600;
+            letter-spacing: 8px;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .hero__title-img {
+            height: 80px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
+        }
+
+        .hero__desc {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero__btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+
+        .hero__btn {
+            display: inline-block;
+            padding: 16px 48px;
+            border: 1px solid var(--color-white);
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            color: var(--color-white);
+            font-size: 16px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .hero__btn:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        /* ------------------------------------------
+           新增：VR 游览板块 (VR Tour Section)
+           ------------------------------------------ */
+        .vr-tour {
+            background: linear-gradient(rgba(30, 58, 43, 0.85), rgba(30, 58, 43, 0.95)), url('GuideMap.jpg') center/cover fixed;
+            color: var(--color-white);
+            text-align: center;
+            margin: 0;
+            padding: 100px 20px;
+        }
+        .vr-tour__title {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .vr-tour__desc {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        .vr-tour__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background-color: #ff9800;
+            color: var(--color-white);
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+        .vr-tour__btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 152, 0, 0.6);
+            color: var(--color-white);
+        }
+
+        /* 3. 特色农产区 - 樱桃产品 */
+        .specialty {
+            background-color: var(--color-white);
+            position: relative;
+        }
+
+        .mascot-badge {
+            position: absolute;
+            top: -60px;
+            right: 10%;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-hover);
+            z-index: 10;
+            animation: float 4s ease-in-out infinite;
+            border: 6px solid var(--color-white);
+            background: #000;
+            object-fit: cover;
+        }
+
+        .specialty__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .specialty__card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .specialty__img-wrap {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            padding: 8px; /* 创造双层边框效果 */
+            position: relative;
+        }
+
+        .specialty__img-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            border: 1px dashed rgba(136, 136, 136, 0.3);
+            margin: 4px;
+            z-index: 1;
+            transition: var(--transition-smooth);
+        }
+
+        .specialty__card:hover .specialty__img-wrap::before {
+            transform: scale(1.05);
+            border-color: var(--color-primary);
+        }
+
+        .specialty__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.6s ease;
+        }
+
+        .specialty__card:hover .specialty__img {
+            transform: scale(1.1);
+        }
+
+        .specialty__title {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            color: var(--color-text-main);
+            margin-bottom: 12px;
+        }
+
+        .specialty__desc {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* 4. 品牌故事区 (纯CSS Tab架构) */
+        .story {
+            background-color: var(--color-bg-light);
+        }
+        
+        .story-poem {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--color-primary);
+            line-height: 2;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .story-poem span {
+            display: block;
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .css-tabs {
+            width: 100%;
+        }
+
+        .css-tabs > input {
+            display: none;
+        }
+
+        .css-tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .css-tabs-nav label {
+            padding: 12px 24px;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border-radius: 30px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .css-tabs-nav label:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .css-tabs-content {
+            display: none;
+            animation: fadeInUp 0.6s ease both;
+            background: var(--color-white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Tab 切换逻辑 */
+        #tab1:checked ~ .css-tabs-nav [for="tab1"],
+        #tab2:checked ~ .css-tabs-nav [for="tab2"],
+        #tab3:checked ~ .css-tabs-nav [for="tab3"],
+        #tab4:checked ~ .css-tabs-nav [for="tab4"],
+        #tab5:checked ~ .css-tabs-nav [for="tab5"],
+        #tab6:checked ~ .css-tabs-nav [for="tab6"],
+        #tab7:checked ~ .css-tabs-nav [for="tab7"] {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+
+        #tab1:checked ~ .content1,
+        #tab2:checked ~ .content2,
+        #tab3:checked ~ .content3,
+        #tab4:checked ~ .content4,
+        #tab5:checked ~ .content5,
+        #tab6:checked ~ .content6,
+        #tab7:checked ~ .content7 {
+            display: block;
+        }
+
+        .story-text-body h4 {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            color: var(--color-primary);
+            margin-bottom: 24px;
+            border-bottom: 1px dashed var(--color-border);
+            padding-bottom: 15px;
+        }
+
+        .story-text-body p {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 2;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        /* 5. 文旅风光区 (News Updates / Scenery) */
+        .news {
+            background-color: var(--color-white);
+        }
+
+        .news__grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+        }
+        
+        .news__left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-self: start;
+        }
+
+        .news__featured {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .news__featured-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .news__featured:hover .news__featured-img {
+            transform: scale(1.03);
+        }
+
+        .news__badge {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 24px 40px;
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .news__list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .news__item {
+            display: flex;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed var(--color-border);
+            transition: var(--transition-smooth);
+        }
+
+        .news__item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .news__item:hover {
+            transform: translateX(5px);
+        }
+
+        .news__icon-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            color: var(--color-primary);
+            padding-top: 5px;
+        }
+
+        .news__icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            opacity: 0.8;
+        }
+
+        .news__content-wrap {
+            flex-grow: 1;
+        }
+
+        .news__item-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text-main);
+            margin-bottom: 12px;
+            transition: var(--transition-smooth);
+            font-family: var(--font-serif);
+        }
+
+        .news__item:hover .news__item-title {
+            color: var(--color-primary);
+        }
+
+        .news__item-desc {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* 7. 页脚 (Footer) */
+        .footer {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 80px 0 40px;
+        }
+
+        .footer__grid {
+            display: flex;
+            justify-content: space-between;
+            /* 精确控制距离左右边缘各 1/3 的距离 */
+            padding: 0 33.33%;
+            margin-bottom: 60px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer__col h4 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer__col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 40px;
+            height: 2px;
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer__link {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+
+        .footer__link:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .footer__contact {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer__contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer__contact-item svg {
+            opacity: 0.8;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer__right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .footer__qr {
+            width: 100px;
+            height: 100px;
+            background-color: var(--color-white);
+            padding: 5px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+        
+        .footer__qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px dashed #ccc;
+        }
+
+        .footer__hotline {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .footer__address {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer__bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ==========================================================================
+           动画与响应式 (Animations & Responsive)
+           ========================================================================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* 针对屏幕变窄时缩减两侧边距，防止内容被过度挤压 */
+        @media (max-width: 1440px) {
+            .footer__grid { padding: 0 20%; }
+        }
+
+        @media (max-width: 1024px) {
+            .news__grid { gap: 40px; }
+            .specialty__img-wrap { width: 200px; height: 200px; }
+            .mascot-badge { width: 100px; height: 100px; top: -50px; right: 5%; }
+            .footer__grid { padding: 0 10%; }
+        }
+
+        @media (max-width: 860px) {
+            .specialty__grid { grid-template-columns: repeat(2, 1fr); }
+            .news__grid { grid-template-columns: 1fr; }
+            .news__featured-img { height: auto; }
+            
+            /* 移动端垂直居中排列页脚 */
+            .footer__grid { 
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 40px;
+                padding: 0 24px;
+            }
+            .footer__col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer__col h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer__right {
+                text-align: center;
+                align-items: center;
+                margin-top: 0px;
+            }
+            
+            .navbar__nav { display: none; }
+            .css-tabs-content { padding: 30px 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .hero__title { font-size: 40px; letter-spacing: 4px; }
+            .hero__btn-group { flex-direction: column; gap: 15px; }
+            .specialty__grid { grid-template-columns: 1fr; }
+            .mascot-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <div class="navbar__logo">杨家东庄</div>
+            <ul class="navbar__nav">
+                <li><a href="#hero" class="navbar__link">首页</a></li>
+                <li><a href="#scenery" class="navbar__link">文旅风光</a></li>
+                <li><a href="#story" class="navbar__link">品牌故事</a></li>
+                <li><a href="#products" class="navbar__link">樱桃产品</a></li>
+                <li><a href="#vr-tour" class="navbar__link">VR游览</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 2. 首屏 Banner 区 -->
+    <section id="hero" class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title">
+                杨家东庄村樱桃采摘
+            </h1>
+            <p class="hero__desc">山环水绕，环境优美。位于怀柔水库西北岸，邀您体验得天独厚的自然风光与甘甜樱桃。</p>
+            <div class="hero__btn-group">
+                <a href="#vr-tour" class="hero__btn">沉浸式VR体验</a>
+                <a href="https://item.btime.com/446icqig3s78dm9n0jujqcvvkf4" target="_blank" class="hero__btn">樱桃采摘视频</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 文旅风光区 -->
+    <section id="scenery" class="news section-padding">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-header__subtitle">Cultural & Tourism Scenery</div>
+                <h2 class="section-header__title">文旅风光 · 特色亮点</h2>
+            </div>
+
+            <div class="news__grid">
+                <!-- 左侧大图导览 (多图堆叠组) -->
+                <div class="news__left-col">
+                    <div class="news__featured">
+                        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/GuideMap.jpg" alt="杨家东庄村导航图" class="news__featured-img">
+                        <div class="news__badge">导览图</div>
+                    </div>
+                    <div class="news__featured">
+                        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Astronomy.jpg" alt="杨家东庄村天文台" class="news__featured-img">
+                        <div class="news__badge">天文台</div>
+                    </div>
+                </div>
+
+                <!-- 右侧详细亮点列表 -->
+                <div class="news__list">
+                    <!-- 亮点 1 -->
+                    <div class="news__item">
+                        <div class="news__icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="news__content-wrap">
+                            <h4 class="news__item-title">党建引领深化基层治理</h4>
+                            <p class="news__item-desc">利用党建协调委员会机制，组建党员街巷长，按照地理划分为4个网格，每个网格由8-9名党员任街巷长，精细管理压实责任。积极发挥党员先锋示范带头作用，组建党员志愿服务队，以群众需求为出发点，定期开展法治教育、医疗援助、政策宣讲等志愿服务活动，同时设身处地为民解忧，用实际行动践行关爱，为村内行动不便的村民打扫卫生、理发，传递温暖，受到村民广泛好评，树立良好的社会风尚。</p>
+                        </div>
+                    </div>
+
+                    <!-- 亮点 2 -->
+                    <div class="news__item">
+                        <div class="news__icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                        </div>
+                        <div class="news__content-wrap">
+                            <h4 class="news__item-title">生态宜居建设美丽乡村</h4>
+                            <p class="news__item-desc">杨家东庄位于怀柔水库一级保护区，持续加强水库周边的环境保护，逐项细化巡河、保洁等各项责任，建立责任追究制度，持续开展垃圾分类和垃圾集中处理等工作，有效改善水质，保护水草植被，维护水生态平衡。水库治理使水质清澈透明，为水鸟和野生动物创造了适宜的栖息和繁衍环境，吸引了天鹅栖息和迁徙。天鹅在水库周边展示了它们翩翩起舞的美丽景象，给游客及摄影爱好者带来了难忘的观赏体验。</p>
+                        </div>
+                    </div>
+
+                    <!-- 亮点 3 -->
+                    <div class="news__item">
+                        <div class="news__icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <div class="news__content-wrap">
+                            <h4 class="news__item-title">樱桃产业助力乡村振兴</h4>
+                            <p class="news__item-desc">杨家东庄村集体通过土地流转有樱桃园150亩，为杨家东庄的农产品打造了独特的品牌形象。樱桃园毗邻水库，风景优美，拥有得天独厚的自然风光。优质的樱桃成为当地的特色农产品，享有良好的市场声誉。已畅销市级超市，进一步提升了杨家东庄的知名度和乡村品牌价值。</p>
+                        </div>
+                    </div>
+                    <!-- 参观地点 1 -->
+                    <div class="news__item">
+                        <div class="news__icon-wrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <div class="news__content-wrap">
+                            <h4 class="news__item-title">天文观测台承载厚重历史</h4>
+                            <p class="news__item-desc">位于村东南水库旁，此观测台为八层倾斜塔楼，楼顶设太阳观测台，平台上设有南北走向的滑轨，用于移动白色的球形防护罩。该观测台处于国际领先水平，曾接待俄罗斯、朝鲜等国的科学家进行学术交流。党和国家领导人江泽民、贾庆林等都曾到此参观，并给予题字。目前该观测台不对外开放，参观交流活动暂未大范围开展。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. 品牌故事区 (Brand Story) -->
+    <section id="story" class="story section-padding">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-header__subtitle">Village History</div>
+                <h2 class="section-header__title">品牌故事 · 村史话</h2>
+            </div>
+
+            <div class="story-poem">
+                "日伪凶顽赛鬼魔，青年参军勇除恶。<br>
+                村办企业富民路，形势喜人捷报多。"
+                <span>—— 杨家东庄村 (苏茂栋、杨桂起、程永山、程秀明)</span>
+            </div>
+
+            <!-- CSS 纯手写多标签页系统 -->
+            <div class="css-tabs">
+                <input type="radio" name="story_tab" id="tab1" checked>
+                <input type="radio" name="story_tab" id="tab2">
+                <input type="radio" name="story_tab" id="tab3">
+                <input type="radio" name="story_tab" id="tab4">
+                <input type="radio" name="story_tab" id="tab5">
+                <input type="radio" name="story_tab" id="tab6">
+                <input type="radio" name="story_tab" id="tab7">
+
+                <div class="css-tabs-nav">
+                    <label for="tab1">基本情况</label>
+                    <label for="tab3">古村古迹</label>
+                    <label for="tab4">对敌斗争</label>
+                    <label for="tab2">解放六十年</label>
+                    <label for="tab5">修建水库</label>
+                    <label for="tab6">村办企业</label>
+                    <label for="tab7">文化传承</label>
+                </div>
+
+                <!-- Tab 1 内容 -->
+                <div class="css-tabs-content content1 story-text-body">
+                    <h4>杨家东庄村基本情况</h4>
+                    <p>杨家东庄村位于怀柔水库西北岸，距离怀柔城区约10公里，距离桥梓镇政府约5公里，总面积3001亩，全村416户810人，其中农户287户621人，非农户129户189人，共31个村民小组，2023年人均收入21980.68元。现有党员51人，两委班子成员4人。</p>
+                </div>
+
+                <!-- Tab 2 内容 -->
+                <div class="css-tabs-content content2 story-text-body">
+                    <h4>解放六十年 对比变化大</h4>
+                    <p>杨家东庄村坐北朝南，北面为山峰，南面是怀柔水库，山环水绕，环境优美。怀柔水库鱼很多，一到秋后，人们开始搭鱼梁，鱼就钻到鱼笼里，吃鲜鱼非常方便。林木以杨树、柳树、榆树为主要树种。山上的水果，以杏、梨、桃、柿子、核桃居多，东庄出产的红杏，个大、肉厚、红脸、黄勺、味道甘甜，当时在怀柔是叫得响的水果。由于水土原因所产的大扁仁个大、饱满、色黄有光泽，怀柔山货栈的师傅一眼就能认出是杨家东庄的大扁仁。</p>
+                    <p>1948年，杨家东庄全村127户、446口人，土地面积2000多亩，林地面积4000多亩，山地面积1500多亩。1956年，成立了农业生产合作社，党支部带领村民从大河三岔口修引水渠，方便村内各家各户浇地浇园，洗衣洗菜，饮牲口等，改善了生活条件。后来，在河套北修一条引水渠，扩大了水稻田的面积，提高了水稻产量，提高了村民的生活质量。此后又在村东修了和尚沟水库，在村北打井，扩大了水浇地的面积，对粮食增产起了很大的作用。</p>
+                    <p>这一时期还有两件事，虽然过去半个世纪了，但村民们一直津津乐道。<strong>打井班</strong>。解放初期，村里有个打井班，哪个地方需要打井，打井班自己去联系，组织施工自带工具，主要是井架、轱辘、提水大缸，自己打井框，打的井出水旺，井筒砌得结实又齐。西到九渡河，北至辛营，东到县城，南到桥梓甚至顺义的赵全营，都有我们村打的井。1955年解放军在桥梓东驻军建兵营，需要打井，得知我村打井班小有名气，就请我们去打井。我们按时按质完成了任务，受到部队首长的表扬。</p>
+                    <p><strong>卖沙增日值</strong>。在合作化运动中，正赶上北京修天竺飞机场，建机场需要大量的、高质量的沙石料，我们村前是怀九河经过的河道，有大量的白干粗沙和河流石。于是，组织社员挖沙石、河流石，机场按颜色、形式分类收购，马车来往运送沙石不断，当年的劳动日值四五元钱，村民非常高兴。到了1958年大跃进，上级头脑一热，想咋干就咋干，结果粮食大减产，社员挨饿。20世纪60年代初刚好一点，又来了十年浩劫。直到改革开放，杨家东庄才和广大农村一样走上正轨。</p>
+                </div>
+
+                <!-- Tab 3 内容 -->
+                <div class="css-tabs-content content3 story-text-body">
+                    <h4>古村古迹多 难忘二郎庙</h4>
+                    <p>旧社会，怀柔庙宇最多的，一是菩萨庙，一是关帝庙、二郎庙。明朝年间，在村西的小坡上建起了一座二郎庙。前出二步檐，后出一步厦。大殿坐北朝南，高大雄伟，前边是顶梁柱两根，大殿三间。房上琉璃瓦，匀垄边上东西各有一排虎狮熊豹子等兽模型和人物造型，房脊两头是龙头。殿中央是一座丈余高的二郎神雕塑，右手持三尖两刃刀，旁立一只啸天犬。殿前是一座平台。下平台出庙门有十米长的南低北高的斜坡，坡上有大石条砌成的台阶逐级而上，台阶两侧各有一棵三个人都抱不拢的大槐树。西边的槐树上挂有一口大钟，钟声洪亮，十里八村都能听得见。</p>
+                    <p>二郎庙没有配房，有东侧院。东侧院的门也是朝南方向，门外有东西侧道，侧道旁有两棵少见的苞麻树。苞麻是北方少见的无核水果，大小形同红果，黄绿色，很好吃。民国时期，为了维护二郎庙，村内拿出二亩地做官地，作为看庙人的维护费用和薪酬。解放后，二郎庙改成小学校。1954年小学发展到四个年级。教师张育民为东庄小学校第一任教师，以后逐步增加了梁松年、梁松泉老师，学生40多人。1958年，因水库移民搬迁随之将其拆毁，一座古庙就这样消失了。每年阴历6月24这天，按照惯例都要在二郎庙前的大戏台上演大戏。十里八村来看戏的人很多，人山人海，热闹非凡。据传说，二郎神力大无比，现在的水库西山和担子山就是二郎神担来的。而且，现在还叫担子山。</p>
+                    <p><strong>二郎庙之外，还有两处遗迹：山寨王</strong>。我村西南有座平顶山，山上有一座塔房，传说是姓武的哥俩带头建的。他们的绰号是“马王爷三只眼”，养一伙喽兵，以平顶山为据点当起了山寨王。当年山下是一条怀柔通往西部地区，如岐庄、黄坎等村的必经之路，该路段两边大树参天，便于隐藏抢劫，因此经常得手。从此这伙人便得意忘形，变本加厉，为害一方。官府虽曾派兵去捉拿，但是由于平顶山易守难攻，多次捉拿未果。后来马王爷将去西边收税的税官和银两给劫了，县府这才下了决心。为除此患，用重兵把山围了起来，同时断了山上的水路，这样相持了几天，这伙人坚持不住了，投降被擒拿归案。官府一把火把山寨给烧了，现在的山上还有一大堆碎砖烂瓦。</p>
+                    <p><strong>鞑子坟</strong>。早年间北方鞑子侵犯北京地区，我们这里就在他们统治之下。鞑子实行火葬，将骨灰装入坛子埋于地下。由于村里有块地埋的鞑子骨灰比较多，所以叫鞑子坟。鞑子死后骨灰埋于地下，同时陪葬品也比较多，如元宝、铜钱、银钱和各种玉器等。解放前，盗墓贼曾多次将珠宝等盗走。1946年，村民杨兆林在地里耕作时，从坟地捡得一条玉带，后被绑匪得知，将杨家人绑走作为人质索要玉带。如今的鞑子坟已成林地和农田。</p>
+                </div>
+
+                <!-- Tab 4 内容 -->
+                <div class="css-tabs-content content4 story-text-body">
+                    <h4>日伪罪行历在目 对敌斗争不惜死</h4>
+                    <p>1943年8月3日，县警备队长陈廷相，带着日本鬼子到我村祸害老百姓。程德新是八路军方面负责征集物资的记账员，陈得知他在给八路军办事，逼迫程交出账本。程德新说： “我没有记账本。”日本人不信，因此就往程德新嘴里灌凉水、煤油，往肚子底下放铁针，日本人上他身上踩，程德新为了保护八路军利益，受尽了折磨。另外，有一天日本鬼子叫村里所有的青壮年头朝下、屁股朝天地蹶着，日本鬼子又踢又打，把杨浮起等人打得满脸是血。有的村民被打得几个月站不起来。这一天男女老幼悲惨凄凉，我们永远不会忘记民族仇恨。</p>
+                    <p>1947年，八路军在村里捉住两个国民党的谍报队员。此事被驻扎在钓鱼台村的茶北大乡得知，就派伙会小队长程德起前去要人。于是，程德起带着一伙伙会到村里乱抓人，一共抓了12个，质问当时当保长的杨昆说：如果不把人找回来，就把这12个人带回去打死。杨昆不说。程德起就把杨昆打得头破血流。接着又对被抓的杨保德等人毒打。为了保护无辜的村民不受伙会催残，地下党员程得义将这一情况通知了八路军。八路军经过权衡，对被抓的两个谍报队员进行教育后放回。这才保住了这12个百姓的生命。</p>
+                    <p>1947年，国民党大乡乡公所设在我村，并成立了伪保安队，每三户摊派买一支枪的任务。当时村民吃饭都很困难，哪有能力给他们购买枪支呢。除了出钱，每天还要给他们出工站岗，就连十五六岁的孩子也要去站岗，保安队稍不满意就又打又骂。敌人为了保护乡政府的安全，防止八路军进村，在村西北山、北山和东山上分别修起了炮楼。这些炮楼全是村民被大乡摊派建成的，还要老百姓无偿地给他们送粮、送水、送柴，榨取村民的血汗。</p>
+                    <p>1948年5月，随着辽沈战役的胜利，茶北乡公所逃到了钓鱼台驻扎。1948年，怀柔解放区四区的何区长到我村与党支部联系，设法摸清国民党在怀柔县城西的驻军情报，为攻打怀柔县城做准备。当时敌占区的戒备很严，所有到敌占区去的外人都要搜身检查，不论男女全不放过。党支部为了完成这一任务，经过研究决定让苦大仇深的16岁程士荣去侦察。程士荣接到去钓鱼台送信的任务后，把信挽在裤腿里。在接近钓鱼台村时，发现路的两边有好多国民党兵在休息。程士荣想，这么多的国军，万一搜身准暴露，自己也会没命。于是他灵机一动，看见北山坡有几个放牲口的孩子，程士荣就过去和孩子说，我和你们一起到钓鱼台行吗？小伙伴答应了，就这样，程士荣骑驴混在小伙伴中进了钓鱼台村。他到了姥姥家，从裤腿里取出了信交给了他舅舅。当伪甲长的舅舅见信后半天没说话。这信是让保长搜集国民党在钓鱼台一带驻军的人数、武器配备情况。舅舅秘密地把信交给了保长，保长接到信后，写了回信。程士荣还是把信挽在裤腿里，奔了村西坡，顺着河套边往回走。走到杨家岭路段时，路旁钻出两个人来，其中就有四区的何区长。区长说：小伙子，你干得好哇！</p>
+                    <p>在抗日战争和解放战争中，我村的秘密中共地下党员刘玉山、程德义、苏宝来、杨德春等人，在极其艰苦的条件下冒着生命危险，同敌人周旋给八路军送情报，组织妇女做军鞋，为八路军捐款捐物，动员青年参军杀敌，作出了很大贡献。还有在解放战争中和抗美援朝保家卫国战争中英勇作战的苏宝存、杨士仪、杨秀林，解放后分别被安排在全国各地担任领导职务。我村在解放战争中牺牲的烈士：杨德财，程德江，杨宝全。在抗美援朝战争中牺牲的烈士：杨宝安。</p>
+                </div>
+
+                <!-- Tab 5 内容 -->
+                <div class="css-tabs-content content5 story-text-body">
+                    <h4>村边修水库 村民成移民</h4>
+                    <p>1957年，河北省通县专区决定修建怀柔水库，我村将全部被水淹没，需搬迁。村民得知搬家的消息后，表示震惊和不理解。有的人听说搬家发怒，有的哭了，有的说就是死也不离开东庄村。群众抵触情绪很大。为此，上级政府向群众宣传修水库的意义，村民听了修水库的重要意义后，这才表示理解，服从国家的需要，同意搬家。话是这么说，可是东庄这个地方毕竟是东庄父老乡亲祖祖辈辈休养生息的地方，感情至深，他们的4000多亩林地、2000多亩土地、500多间房屋将被水淹没，谁不心疼啊！</p>
+                    <p>1958年2月，东庄开始搬迁，拉走了300多车的家具物品、200多车的房架、1000多车的木材，此外还有200多头骡、马、驴、牛。我村一律搬到桥梓。当时正值大炼钢铁、大刮共产风、吃食堂，从东庄拉到桥梓的物资、牲畜等，由八一公社统一调拨、统一使用。1959年底，村民们从桥梓搬到前后辛庄村，搬回来的时候只有30多头牲口了。搬到桥梓去的上千车木材，几乎都扔在了桥梓，给东庄村民造成了重大损失。</p>
+                    <p>水库修好后，县政府根据群众的要求，同意村民搬回东庄盖房、种田。由于原村已淹没在水里，所以建新村的地址北移，靠山坡根的高处坝台盖房（今住址）。杨家东庄村民们为了大局，在搬迁移居的那两年，受了不少苦，为国家作出了很大的牺牲和贡献。</p>
+                    <p><strong>天文观测台</strong>。村东南水库边有一个叫龙潭的地方，国家建了一座天文台。此地风景秀丽，依山傍水，紧临山根有个孤岛叫龙台，在这龙台上建了天文观测台。此观测台是八层倾斜似的塔楼，楼顶是太阳观测台，平台上设有南北走向的滑轨，用于移动白色的球形防护罩。观测时将防护罩向北推动，观测完后向南拉上，将观测镜罩上。该太阳观测站是亚洲地区最大的。科技含量高，俄罗斯、朝鲜等一些国家的科学家曾来此进行学术交流。党和国家领导人江泽民、朱镕基、李鹏、贾庆林等都曾到此参观，并给予题字。2001年全村279户、706口人，土地总面积3001亩，其中林地面积2406亩、口粮田200亩。全村经济总收入1278万元，人均纯收入3958元，是1978年的39.5倍。现在，村里安装了路灯；建了公园和文化站；村民全部用上了自来水，看上了有线电视。社员的生活环境、生活水平发生了翻天覆地的变化。</p>
+                </div>
+
+                <!-- Tab 6 内容 -->
+                <div class="css-tabs-content content6 story-text-body">
+                    <h4>大办村企业 农民得实惠</h4>
+                    <p>1974年，杨家东庄年人均收入只有98元，每天只合两毛六分多钱，社员生活十分贫困。为了提高社员的生活水平，党支部向公社写了关于建工厂的申请，公社开了证明信。于是村干部和县工副业办公室负责人郭自友一块去北京工副业办公室选项目。当时，有象棋、折扇、纸箱、票夹四个任选项目，我村选择了票夹。项目选定后开始建厂房，厂房8米跨度，总长20米。相继又建起喷漆室，盖起组装车间，同时派20名青年去琉璃河文具厂学习技术，学习几个月后回到厂里当了技术工人。建厂初期由于村里贫穷，没有建厂资金，大队干部到处借，买不起新设备就买旧的，经过几个月的准备工作，终于投产了。</p>
+                    <p>1976年产值20多万元。以后逐年发展壮大，群众生活得到改善。改革开放后，上级政策放宽了，鼓励兴办社队企业。村里原有的五金厂，发展很兴旺，最高年利润达50多万元。社员的生活水平走在了全乡的前头。后又投资近10万元盖了400平米的二层村委会办公楼。当时村委会办公楼在全县屈指可数。1999年，自投资金18万元修了3公里通往村里的柏油路。1993年又投资15万元，在河套路段打了水泥路，出行条件得到改善。村里先后办起了纸箱厂、变形纱厂、锻造厂，村民就业率达100％。同时也解决了附近村民的就业，经济发展形势喜人。</p>
+                    <p>2000年怀柔水库水源保护力度加大，所有一级保护区内为防止污染，不准搞开发，不准办企业，不准搞旅游。成了不能发展经济的“特区”，村办企业从此衰落。</p>
+                </div>
+
+                <!-- Tab 7 内容 -->
+                <div class="css-tabs-content content7 story-text-body">
+                    <h4>画家程永起 为村争美名</h4>
+                    <p>古老的杨家东庄，依山临河，树木繁茂。是个鸟语花香、风光秀丽、人杰地灵的好地方。出生于20世纪50年代的程永起，从小聪明伶俐，村里的老人们人见人爱。永起上高中的时候虽然赶上了“文革”，但他勤奋好学，“两耳不闻窗外事，一心只读圣贤书”。20世纪80年代初考入师范，研习美术，毕业后成为一名美术教师，1991年调入教师进修学校，负责全区的美术教学研究工作。程永起主攻写意花鸟，几十年来他创作了大量的美术作品。他的画不但被张挂在政府机关的大雅之堂，而且也走进了普通百姓家。他的画多次在中国美术馆、军事博物馆等艺术殿堂展览。多次在全国书画大赛大展中获奖。多幅作品被纪念馆、书画院收藏。</p>
+                    <p>永起是人民的儿子，人民的画家。十几年来，他不但培养了大批优秀美术教师，而且他利用工作之余，为怀柔人民培养新一代的美术人才。据不完全统计，经他辅导过的少儿超过千人。多年来，300余人次在“国际儿童书画大赛” 中分别获金、银等奖项。他本人也获得“国际书画教育300家” 荣誉称号。2000年－2002年参与组织策划的“迎千年儿童书画大展”、“地税杯儿童书画大赛”活动，受到了社会的广泛好评。永起为人正直、心地善良、平易近人。几十年来，每当有人向他求字求画，他都有求必应。他现任怀柔区教科研中心美术教研员，中国美术教育研究会会员，北京美术家协会会员，怀柔区美术家协会副主席，区美术作品大赛评委、区老干部大学特聘花鸟画教师，怀柔区文联理事。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 樱桃产品区 (Specialty Products) -->
+    <section id="products" class="specialty section-padding">
+        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/CherryMascot.png" class="mascot-badge" alt="Cherry Mascot">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-header__subtitle">Cherry Products</div>
+                <h2 class="section-header__title">樱桃产品与生态建设</h2>
+            </div>
+            
+            <div class="specialty__grid">
+                <!-- 产品 1：樱桃园介绍 -->
+                <div class="specialty__card">
+                    <div class="specialty__img-wrap">
+                        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Cherry-Unrape.jpg" alt="种樱桃 促经济" class="specialty__img">
+                    </div>
+                    <h3 class="specialty__title">种樱桃，促经济</h3>
+                    <div class="specialty__desc">
+                        目前，杨家东庄村樱桃产业已构建起“村集体樱桃园+合作社+农户参与”的经营架构。村集体拥有核心樱桃园约130亩，主要采用露天种植模式。在品种结构上，园区引进了美早、黑珍珠、红灯、大水晶、岱红等十余个早中晚熟品种，有效拉长了采摘周期，通常从5月中下旬持续至6月中下旬。在品质管控方面，园区突出绿色生态理念，全程施用农家肥并采用无公害除虫技术。同时，依托怀柔水库周边的地理优势，园区主打“380米深岩层水灌溉”的卖点，精心打造“水岸樱桃”概念，显著提升了果品的差异化竞争力。此外，村内先后注册了北京水乡情、北京益水青山等樱桃种植专业合作社，负责种植技术的统一指导与日常运营管理。
+                    </div>
+                </div>
+                
+                <!-- 产品 2：煤改电 -->
+                <div class="specialty__card">
+                    <div class="specialty__img-wrap">
+                        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Picking-Cherry.jpg" alt="农旅融，市场阔" class="specialty__img">
+                    </div>
+                    <h3 class="specialty__title">农旅融，市场阔</h3>
+                    <div class="specialty__desc">
+                        杨家东庄村突破了单一农产品批发模式，深度推进农旅融合。依托村集体樱桃园和周边约8公里的环库步道，该村构建了“春季赏花—初夏采摘—休闲体验”的业态组合，创新推出了采摘音乐节、果酱手作体验等亲子与团建项目。在销售渠道上，除了传统的采摘门票销售外，近年来在镇级文旅公司的统筹下，杨家东庄樱桃被纳入党建红色路线、亲子互动等精品旅游线路，实行统一收购与礼盒包装销售。村集体还积极借助短视频平台进行线上推广，初步打开了知名度。据官方数据，通过樱桃产业及农旅融合项目的带动，可实现户均年增收约2.4万元，在桥梓镇近千亩、年产量超百万斤的樱桃产业大盘中占据着重要节点地位。
+                    </div>
+                </div>
+                
+                <!-- 产品 3：拆违腾地 -->
+                <div class="specialty__card">
+                    <div class="specialty__img-wrap">
+                        <img src="https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Cherry-Fresh.jpg" alt="拆违腾地 合理用地" class="specialty__img">
+                    </div>
+                    <h3 class="specialty__title">政策扶，活力新</h3>
+                    <div class="specialty__desc">
+                        该村的产业发展离不开特定的政策与智力环境支撑。一方面，作为怀柔水库水源保护区，产业发展必须在严格的生态红线内运行，这反向倒逼了樱桃产业走绿色、轻设施的生态农业路线。另一方面，在乡村振兴战略背景下，驻村第一书记与团区委共建机制发挥了积极作用。特别是中国农业大学“挑战杯”项目团队专程入驻，围绕“水源智耕+IP灵韵”路径，为该村设计了“樱宝”IP形象及品牌视觉系统；同时结合附近国家天文台怀柔太阳观测基地的科普资源，探索“天文+农业研学”的新模式，为传统种植注入了创新活力。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全景VR游览独立板块 -->
+    <section id="vr-tour" class="vr-tour">
+        <div class="container">
+            <h2 class="vr-tour__title">全景VR游览</h2>
+            <p class="vr-tour__desc">足不出户，云游杨家东庄村！利用 720 度沉浸式环绕视角，带您身临其境感受秀美的湖光山色、天文台远景以及生机勃勃的樱桃生态园。</p>
+            <a href="https://www.720yun.com/vr/16aj50tmsy2" target="_blank" class="vr-tour__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                立即开启全景漫游
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. 页脚 (Footer) -->
+    <footer class="footer">
+        <!-- 将内容从常规 container 中移出，以响应完整的网页宽度 -->
+        <div class="footer__grid">
+            <div class="footer__col">
+                <h4>快捷导航</h4>
+                <ul class="footer__links">
+                    <li><a href="#hero" class="footer__link">返回首页</a></li>
+                    <li><a href="#scenery" class="footer__link">文旅风光导览</a></li>
+                    <li><a href="#story" class="footer__link">品牌故事渊源</a></li>
+                    <li><a href="#vr-tour" class="footer__link">全景VR体验馆</a></li>
+                    <li><a href="#products" class="footer__link">樱桃产品介绍</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col footer__right">
+                <!-- 二维码占位 -->
+                <div class="footer__qr">
+                    <svg viewBox="0 0 100 100" style="background:#fff; width:100%; height:100%;">
+                        <!-- 简单的SVG伪造二维码图案 -->
+                        <rect x="10" y="10" width="30" height="30" fill="none" stroke="#333" stroke-width="4"/>
+                        <rect x="15" y="15" width="20" height="20" fill="#333"/>
+                        <rect x="60" y="10" width="30" height="30" fill="none" stroke="#333" stroke-width="4"/>
+                        <rect x="65" y="15" width="20" height="20" fill="#333"/>
+                        <rect x="10" y="60" width="30" height="30" fill="none" stroke="#333" stroke-width="4"/>
+                        <rect x="15" y="65" width="20" height="20" fill="#333"/>
+                        <rect x="60" y="60" width="10" height="10" fill="#333"/>
+                        <rect x="80" y="80" width="10" height="10" fill="#333"/>
+                        <rect x="50" y="50" width="20" height="20" fill="#333"/>
+                    </svg>
+                </div>
+                <div class="footer__hotline">北京市怀柔区桥梓镇</div>
+                <div class="footer__address">杨家东庄村村民委员会</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer__bottom">
+                &copy; 2026 杨家东庄村版权所有
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
