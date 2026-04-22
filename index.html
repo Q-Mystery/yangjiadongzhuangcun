@@ -11,9 +11,10 @@
            CSS 变量与全局设置 (CSS Variables & Global Styles)
            ========================================================================== */
         :root {
-            --color-primary: #1E3A2B;
-            --color-primary-light: #2A523D;
-            --color-primary-dark: #12241A;
+            /* 换用更明亮、更具自然气息的绿色 */
+            --color-primary: #388E3C;       /* 主绿色 */
+            --color-primary-light: #4CAF50; /* 浅绿色 */
+            --color-primary-dark: #2E7D32;  /* 深绿色 */
             --color-white: #FFFFFF;
             --color-bg-light: #F8F9FA;
             --color-text-main: #333333;
@@ -111,7 +112,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(30, 58, 43, 0.95);
+            /* 同步修改 rgba 中的 RGB 值为对应的新主绿色 (56, 142, 60) */
+            background-color: rgba(56, 142, 60, 0.95);
             backdrop-filter: blur(10px);
             color: var(--color-white);
             z-index: 1000;
@@ -168,8 +170,8 @@
         /* 2. 首屏大图区 (Hero Section) */
         .hero {
             height: 100vh;
-            /* 替换为在线图片素材 */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(30, 58, 43, 0.6)), url('https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Cherry-Quality.jpg') center/cover no-repeat;
+            /* 同步修改 rgba 中的 RGB 值为对应的新主绿色 */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(56, 142, 60, 0.6)), url('https://yangjiadongzhuangcun.oss-cn-beijing.aliyuncs.com/Cherry-Quality.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -247,7 +249,8 @@
            新增：VR 游览板块 (VR Tour Section)
            ------------------------------------------ */
         .vr-tour {
-            background: linear-gradient(rgba(30, 58, 43, 0.85), rgba(30, 58, 43, 0.95)), url('GuideMap.jpg') center/cover fixed;
+            /* 同步修改 rgba 中的 RGB 值为对应的新主绿色 */
+            background: linear-gradient(rgba(56, 142, 60, 0.85), rgba(56, 142, 60, 0.95)), url('GuideMap.jpg') center/cover fixed;
             color: var(--color-white);
             text-align: center;
             margin: 0;
@@ -783,7 +786,7 @@
     <!-- 1. 顶部导航栏 -->
     <header class="navbar">
         <div class="container navbar__container">
-            <div class="navbar__logo">杨家东庄</div>
+            <div class="navbar__logo">东庄·樱语</div>
             <ul class="navbar__nav">
                 <li><a href="#hero" class="navbar__link">首页</a></li>
                 <li><a href="#scenery" class="navbar__link">文旅风光</a></li>
@@ -798,7 +801,7 @@
     <section id="hero" class="hero">
         <div class="hero__content">
             <h1 class="hero__title">
-                杨家东庄村樱桃采摘
+                樱绕水岸·云润东庄
             </h1>
             <p class="hero__desc">山环水绕，环境优美。位于怀柔水库西北岸，邀您体验得天独厚的自然风光与甘甜樱桃。</p>
             <div class="hero__btn-group">
